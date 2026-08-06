@@ -1,0 +1,7 @@
+.venv
+main.py
+
+__pycache__/
+*.pyc
+
+Animations/
