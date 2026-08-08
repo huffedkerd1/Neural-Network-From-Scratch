@@ -79,7 +79,7 @@ class ParamOperation(Operation):
         assert self.input_.shape == self.input_grad
         assert self.params == self.param_grad
 
-        return self.input_grad, self.param_grad
+        return self.input_grad
 
     def _param_grad(self, output_grad: ndarray) -> ndarray:
         raise NotImplementedError()
