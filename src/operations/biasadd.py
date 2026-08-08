@@ -7,7 +7,7 @@ from base import ParamOperation
 This class adding bias in our weight multiply
 y = XW + b
 """
-class biasAdd(ParamOperation):
+class BiasAdd(ParamOperation):
 
     def __init__(self, B: ndarray):
         """ Sending B parameter to ParamOperation class and checking its shape """
