@@ -10,8 +10,8 @@ from numpy import ndarray
 
 # Importing all classes except ParamOperation class
 from base import Layer, Operation
-from operations import WeightMultiply, BiasAdd
-from activations import Sigmoid
+from ..operations import WeightMultiply, BiasAdd
+from ..activations import Sigmoid
 
 class Dense(Layer):
 

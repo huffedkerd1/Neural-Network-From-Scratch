@@ -8,7 +8,7 @@ import numpy as np
 from numpy import ndarray
 from typing import List
 
-from operation import ParamOperation
+from .operation import ParamOperation
 
 # Making the layer class to inheriate in different types of layers
 class Layer:
