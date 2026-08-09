@@ -76,8 +76,8 @@ class ParamOperation(Operation):
         self.input_grad = self._input_grad(output_grad)
         self.param_grad = self._param_grad(output_grad)
 
-        assert self.input_.shape == self.input_grad
-        assert self.params == self.param_grad
+        assert self.input_.shape == self.input_grad.shape
+        assert self.params.shape == self.param_grad.shape
 
         return self.input_grad
 

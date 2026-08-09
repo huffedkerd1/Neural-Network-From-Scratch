@@ -45,7 +45,7 @@ class Layer:
 
     def backward(self, output_grad: ndarray) -> ndarray:
         # Checking output and output gradients shape
-        assert self.output == output_grad
+        assert self.output.shape == output_grad.shape
 
         # In forward pass we go forward and In backward we go backward
         for operation in reversed(self.operations):
@@ -57,7 +57,7 @@ class Layer:
 
         return input_grad
 
-    def param_grads(self) -> ndarray:
+    def param_grad(self) -> ndarray:
         # Storing parameters gradient 
         self.param_grads = []
         '''
@@ -67,7 +67,7 @@ class Layer:
             if issubclass(operation.__class__, ParamOperation):
                 self.param_grads.append(operation.param_grad)
 
-    def params(self) -> ndarray:
+    def param(self) -> ndarray:
         # Storing parameters
         self.params = []
         '''

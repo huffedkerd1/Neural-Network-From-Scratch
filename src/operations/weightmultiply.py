@@ -16,7 +16,6 @@ class WeightMultiply(ParamOperation):
 
     def __init__(self, W: ndarray):
         """As we know that in ParamOperation we have an attribute params now we pass weights(W) as a param"""
-        assert self.input_.shape[1] == W.shape[0]
         super().__init__(W)
 
     def _output(self) -> ndarray:

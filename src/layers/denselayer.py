@@ -32,7 +32,7 @@ class Dense(Layer):
         # Creating empty params list. This list contain weights and biases.
         self.params = []
 
-        self.params.append(np.random.randn(input_.shape[1], self.neurons)) # Weights
+        self.params.append(np.random.randn(input_.shape[1], self.neurons) * (2 / input_.shape[1])) # Weights
         self.params.append(np.random.randn(1, self.neurons)) # Bias
 
         # Setting all operations in one operation list. We already use in Layer class. But operations define here.
