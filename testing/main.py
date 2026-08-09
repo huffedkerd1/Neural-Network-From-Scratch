@@ -3,7 +3,7 @@ Let's test our first version of neural network.
 
 By the way i am waiting for this so long.
 I think this is my biggest Achivement,
-Because i am for this line:
+Because i am waiting for this line:
 'nn = NeuralNetwork()' I love this for my personal Framework
 '''
 
