@@ -70,14 +70,12 @@ Layers = [
 nn = NeuralNetwork(layers=Layers, loss=MeanSquaredError(), seed=42)
 output = nn.forward(X_train)
 
-<<<<<<< HEAD
 optimizer = SGD(lr=0.01)
 train = Trainer(nn, optimizer)
 train.fit(X_train, y_train, X_test, y_test, epochs=100, eval_every=10, batch_size=5, seed=42, restart=True) 
-=======
+
 X = np.random.randn(4, 2)
 
 output = nn.forward(X)
 print(f'Output: {output}')
 print(f'Shape: {output.shape}')
->>>>>>> 438d911c4c792b71834b6407fd575646afdbf1a7
