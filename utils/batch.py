@@ -11,8 +11,9 @@ class BatchData:
 
         if start + batch_size > X.shape[0]:
             batch_size = X.shape[0] - start
+        for start in range(0, X.shape[0], batch_size):
 
-        X_batch = X[start: start + batch_size]
-        Y_batch = Y[start: start + batch_size]
+            X_batch = X[start: start + batch_size]
+            Y_batch = Y[start: start + batch_size]
 
-        return X_batch, Y_batch
+            yield X_batch, Y_batch

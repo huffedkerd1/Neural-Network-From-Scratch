@@ -53,7 +53,7 @@ class Layer:
 
         # Return input_grad and calling parameters gradient
         input_grad = output_grad
-        self.param_grads()
+        self.param_grad()
 
         return input_grad
 

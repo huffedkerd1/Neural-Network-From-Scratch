@@ -35,7 +35,7 @@ class Trainer:
         for e in range(epochs):
 
             X_train, y_train = DataShuffling().permute_data(X_train, y_train)
-            batchdata = BatchData().generate_batch(X_train, y_train, batch_size)
+            batchdata = BatchData().generate_batch(X_train, y_train, start=0, batch_size=batch_size)
 
             for ii, (X_batch, y_batch) in enumerate(batchdata):
                 self.net.train_batch(X_batch, y_batch)
@@ -45,4 +45,4 @@ class Trainer:
                 test_preds = self.net.forward(X_test)
                 loss = self.net.loss.forward(test_preds, y_test)
                 
-                print(f'Loss after {e+1} epochs is {loss:.3f}')
+                print(f'Loss after {e+1} epochs is {loss}')

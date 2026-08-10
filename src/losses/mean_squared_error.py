@@ -21,12 +21,11 @@ class MeanSquaredError(Loss):
     '''
     def _output(self) -> float:
 
-        loss = np.sum(np.pow(self.predictions - self.target, 2)) / self.predictions[0]
-        return loss
+        return np.mean(np.pow(self.predictions - self.target, 2))
 
     '''
     Calculating loss derivative -> MSE.
     '''
     def _input_grad(self) -> ndarray:
 
-        return 2.0 * (self.predictions - self.target) / self.predictions[0]
+        return 2.0 * (self.predictions - self.target) / self.predictions.size
