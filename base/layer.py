@@ -57,7 +57,7 @@ class Layer:
 
         return input_grad
 
-    def param_grad(self) -> ndarray:
+    def param_grad(self) -> None:
         # Storing parameters gradient 
         self.param_grads = []
         '''
@@ -67,7 +67,7 @@ class Layer:
             if issubclass(operation.__class__, ParamOperation):
                 self.param_grads.append(operation.param_grad)
 
-    def param(self) -> ndarray:
+    def param(self) -> None:
         # Storing parameters
         self.params = []
         '''

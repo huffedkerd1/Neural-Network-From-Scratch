@@ -16,66 +16,42 @@ ROOT = Path(__file__).resolve().parents[1]
 if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
 
-from src.layers import Dense
-from src.losses import MeanSquaredError
-from src.activations import Sigmoid
 from models import NeuralNetwork
+from utils import Splitting
+from src.layers import Dense
+from src.activations import Sigmoid
+from src.losses import MeanSquaredError
 from src.optimizers import SGD
 from src.train import Trainer
 
-X_train = np.array([
-    [0.1, 0.2],
-    [0.2, 0.1],
-    [0.3, 0.2],
-    [0.2, 0.3],
-    [0.8, 0.9],
-    [0.9, 0.8],
-    [0.7, 0.9],
-    [0.9, 0.7]
+X = np.array([
+    [0, 0],
+    [0, 1],
+    [1, 0],
+    [1, 1]
 ])
 
-y_train = np.array([
-    [0],
-    [0],
-    [0],
+y = np.array([
     [0],
     [1],
     [1],
-    [1],
-    [1]
+    [0]
 ])
 
-X_test = np.array([
-    [0.15, 0.25],
-    [0.85, 0.85],
-    [0.25, 0.15],
-    [0.75, 0.80]
-])
-
-y_test = np.array([
-    [0],
-    [1],
-    [0],
-    [1]
-])
+X_train, y_train, X_test, y_test = Splitting().train_test_split(X, y, test_size=0.25)
 
 Layers = [
-    Dense(neurons=10, activation=Sigmoid()),
-    Dense(neurons=7, activation=Sigmoid()),
-    Dense(neurons=5, activation=Sigmoid()),
-    Dense(neurons=1, activation=Sigmoid()),
+    Dense(neurons=4, activation=Sigmoid()),
     Dense(neurons=1, activation=Sigmoid())
 ]
 
 nn = NeuralNetwork(layers=Layers, loss=MeanSquaredError(), seed=42)
+
 output = nn.forward(X_train)
 
-optimizer = SGD(lr=0.01)
-train = Trainer(nn, optimizer)
-train.fit(X_train, y_train, X_test, y_test, epochs=100, eval_every=10, batch_size=5, seed=42, restart=True) 
-
-X = np.random.randn(4, 2)
+optimizer = SGD(lr=0.0001)
+trainer = Trainer(nn, optimizer)
+trainer.fit(X_train, y_train, X_test, y_test, epochs=10000, eval_every=100, batch_size=2, seed=42, restart=True )
 
 output = nn.forward(X)
-print(f'Output: {output}')
-print(f'Shape: {output.shape}')
+print(output)

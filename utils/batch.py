@@ -9,11 +9,12 @@ class BatchData:
 
     def generate_batch(self, X: ndarray, Y:ndarray, start: int = 0, batch_size: int = 32):
 
-        if start + batch_size > X.shape[0]:
-            batch_size = X.shape[0] - start
+        if batch_size <= 0:
+            raise ValueError("Batch size must be greater than 0.")
+        
         for start in range(0, X.shape[0], batch_size):
 
-            X_batch = X[start: start + batch_size]
-            Y_batch = Y[start: start + batch_size]
+            X_batch = X[start:start + batch_size]
+            Y_batch = Y[start:start + batch_size]
 
             yield X_batch, Y_batch

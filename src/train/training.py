@@ -26,6 +26,9 @@ class Trainer:
             restart: bool = True
             ) -> None:
 
+        if eval_every <= 0:
+            raise ValueError("eval_every must be greater than 0.")
+
         np.random.seed(seed)
 
         if restart:
@@ -35,7 +38,7 @@ class Trainer:
         for e in range(epochs):
 
             X_train, y_train = DataShuffling().permute_data(X_train, y_train)
-            batchdata = BatchData().generate_batch(X_train, y_train, start=0, batch_size=batch_size)
+            batchdata = BatchData().generate_batch(X_train, y_train, batch_size=batch_size)
 
             for ii, (X_batch, y_batch) in enumerate(batchdata):
                 self.net.train_batch(X_batch, y_batch)

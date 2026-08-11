@@ -11,6 +11,10 @@ class DataShuffling:
         pass
 
     def permute_data(self, X: ndarray, Y: ndarray) -> Tuple[ndarray, ndarray]:
+
+        if X.shape[0] != Y.shape[0]:
+            raise ValueError("X and y must have the same number of samples.")
+
         permutation = np.random.permutation(X.shape[0])
 
         return X[permutation], Y[permutation]

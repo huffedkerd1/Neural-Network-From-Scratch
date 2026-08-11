@@ -24,9 +24,8 @@ class NeuralNetwork:
         self.loss = loss
         self.seed = seed 
 
-        if seed:
-            for layer in self.layers:
-                setattr(layer, "seed", self.seed)
+        for layer in self.layers:
+            setattr(layer, "seed", self.seed)
 
     '''
     Taking the input but in batches.
@@ -79,6 +78,7 @@ class NeuralNetwork:
     def params(self):
 
         for layer in self.layers:
+            layer.param()
             yield from layer.params
 
     '''
@@ -87,4 +87,5 @@ class NeuralNetwork:
     def param_grads(self):
 
         for layer in self.layers:
+            layer.param_grad()
             yield from layer.param_grads

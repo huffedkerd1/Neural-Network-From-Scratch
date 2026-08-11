@@ -15,25 +15,17 @@ from ..activations import Sigmoid
 
 class Dense(Layer):
 
-    def __init__(self, neurons: int, activation: Operation = Sigmoid()) -> None:
+    def __init__(self, neurons: int, activation: Operation = None) -> None:
         super().__init__(neurons)
-        self.activation = activation
+        self.activation = activation if activation is not None else Sigmoid()
 
     def _setup_layer(self, input_: ndarray) -> None:
-
-        '''
-        Setting random seed
-
-        This is later define when we create Neural Network class.
-        '''
-        if self.seed:
-            np.random.seed(self.seed)
-            
+        
         # Creating empty params list. This list contain weights and biases.
         self.params = []
 
-        self.params.append(np.random.randn(input_.shape[1], self.neurons) * (2 / input_.shape[1])) # Weights
-        self.params.append(np.random.randn(1, self.neurons)) # Bias
+        self.params.append(np.random.randn(input_.shape[1], self.neurons) * np.sqrt(2 / input_.shape[1])) # Weights
+        self.params.append(np.zeros((1, self.neurons))) # Bias
 
         # Setting all operations in one operation list. We already use in Layer class. But operations define here.
         self.operations = [
